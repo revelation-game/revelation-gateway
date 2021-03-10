@@ -1,13 +1,14 @@
 package io.github.revelationgame.gateway;
 
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class GatewayApplicationTest {
 
     @Test
-    public void helloWorld() {
-        Assertions.assertThat(true).isTrue();
+    void helloWorld() {
+        assertThat(true).isTrue();
     }
 }

@@ -47,6 +47,13 @@ dependencyManagement {
 
 // --- Setup Tests ---
 
+// Define jacoco reports for tests
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
 // Define integration test
 sourceSets {
     integrationTest {
@@ -67,13 +74,6 @@ task integrationTest(type: Test) {
 }
 
 check.dependsOn integrationTest
-
-// Define jacoco reports for tests
-jacocoTestReport {
-    reports {
-        xml.enabled true
-    }
-}
 
 // Test and integrationTest should print logging events and use JUnit
 tasks.withType(Test) {

@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: revelationGateway
+  cloud:
+    discovery:
+      enabled: false
+eureka:
+  client:
+    service-url: ${EUREKA_SERVER}

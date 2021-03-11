@@ -1,4 +1,4 @@
-name: Unit- & IntegreationTests, SonarAnalysis, Docker Deploy
+name: Master - Test & Deploy
 
 on:
   push:

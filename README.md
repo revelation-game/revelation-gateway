@@ -3,7 +3,6 @@
 ### Master Branch:
 
 [![Master - Test & Deploy](https://github.com/revelation-game/revelation-gateway/actions/workflows/master.yaml/badge.svg)](https://github.com/revelation-game/revelation-gateway/actions/workflows/master.yaml)
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=revelation-game_revelation-gateway)](https://sonarcloud.io/dashboard?id=revelation-game_revelation-gateway)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=revelation-game_revelation-gateway&metric=alert_status)](https://sonarcloud.io/dashboard?id=revelation-game_revelation-gateway)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=revelation-game_revelation-gateway&metric=code_smells)](https://sonarcloud.io/dashboard?id=revelation-game_revelation-gateway)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=revelation-game_revelation-gateway&metric=coverage)](https://sonarcloud.io/dashboard?id=revelation-game_revelation-gateway)

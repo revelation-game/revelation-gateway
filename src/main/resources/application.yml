@@ -10,6 +10,11 @@ spring:
             - Path=/game/**
           filters:
             - StripPrefix=1
+org:
+  springframework:
+    cloud:
+      gateway: DEBUG
+
 
 eureka:
   client:
@@ -17,4 +22,11 @@ eureka:
       defaultZone: http://${EUREKA_SERVER:localhost}:8761/eureka
 server:
   port: 8080
-
+logging:
+  level:
+    reactor:
+      netty: DEBUG
+    org:
+      springframework:
+        cloud:
+          gateway: DEBUG

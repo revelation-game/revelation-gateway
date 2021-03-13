@@ -2,12 +2,19 @@ spring:
   application:
     name: revelation-gateway
   cloud:
-    discovery:
-      enabled: true
+    gateway:
+      routes:
+        - id: game-service
+          uri: lb://revelation-game
+          predicates:
+            - Path=/game/**
+          filters:
+            - RewritePath=/game(?<path>.*), /$\{path}
+
 eureka:
   client:
     service-url:
       defaultZone: http://${EUREKA_SERVER:localhost}:8761/eureka
-
 server:
   port: 8080
+

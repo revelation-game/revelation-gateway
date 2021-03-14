@@ -1,3 +1,11 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_SERVER:localhost}:8761/eureka
+
 spring:
   application:
     name: revelation-gateway
@@ -10,23 +18,12 @@ spring:
             - Path=/game/**
           filters:
             - StripPrefix=1
-org:
-  springframework:
-    cloud:
-      gateway: DEBUG
+springdoc:
+  swagger-ui:
+    config-url: /swagger-config.json
 
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://${EUREKA_SERVER:localhost}:8761/eureka
-server:
-  port: 8080
-logging:
-  level:
-    reactor:
-      netty: DEBUG
-    org:
-      springframework:
-        cloud:
-          gateway: DEBUG
+revelation:
+  custom-swagger:
+    host-name: ${HOST_NAME:http://localhost:8080}
+    url-prefixes:
+      - game

@@ -32,9 +32,13 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 
+    implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.5.5'
+
     compileOnly 'org.projectlombok:lombok'
 
     annotationProcessor 'org.projectlombok:lombok'
+    // For auto completion on properties
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
     // Test dependencies
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

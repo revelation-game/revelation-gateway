@@ -34,6 +34,7 @@ public class SwaggerUiConfig {
     public Map<String, Object> swaggerConfig() {
 
         List<SwaggerUrl> urls = urlPrefixes.stream()
+                // TODO externalize
                 .map(prefix -> new SwaggerUrl(prefix, "http://localhost:" + applicationPort + "/" + prefix + "/custom-open-api/v3/api-docs?serverUrl=" + hostName + "/" + prefix))
                 .collect(Collectors.toList());
 

@@ -2,5 +2,3 @@ spring:
   cloud:
     discovery:
       enabled: false
-server:
-  port: 8080

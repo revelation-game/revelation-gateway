@@ -26,10 +26,6 @@ public class SwaggerUiConfig {
     @Setter
     private List<String> urlPrefixes;
 
-    @Value("${server.port}")
-    private String applicationPort;
-
-
     @GetMapping("/swagger-config.json")
     public Map<String, Object> swaggerConfig() {
 
@@ -41,6 +37,6 @@ public class SwaggerUiConfig {
     }
 
     private String getApiUrl(String prefix) {
-        return "http://localhost:" + applicationPort + "/" + prefix + "/custom-open-api/v3/api-docs?serverUrl=" + hostName + "/" + prefix;
+        return hostName + "/" + prefix + "/custom-open-api/v3/api-docs?serverUrl=" + hostName + "/" + prefix;
     }
 }

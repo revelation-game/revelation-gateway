@@ -34,10 +34,13 @@ public class SwaggerUiConfig {
     public Map<String, Object> swaggerConfig() {
 
         List<SwaggerUrl> urls = urlPrefixes.stream()
-                // TODO externalize
-                .map(prefix -> new SwaggerUrl(prefix, "http://localhost:" + applicationPort + "/" + prefix + "/custom-open-api/v3/api-docs?serverUrl=" + hostName + "/" + prefix))
+                .map(prefix -> new SwaggerUrl(prefix, getApiUrl(prefix)))
                 .collect(Collectors.toList());
 
         return Map.of("urls", urls);
+    }
+
+    private String getApiUrl(String prefix) {
+        return "http://localhost:" + applicationPort + "/" + prefix + "/custom-open-api/v3/api-docs?serverUrl=" + hostName + "/" + prefix;
     }
 }

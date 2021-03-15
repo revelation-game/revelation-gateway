@@ -3,9 +3,7 @@ package io.github.revelationgame.gateway.openapi;
 import lombok.Getter;
 import lombok.Setter;
 import org.springdoc.core.AbstractSwaggerUiConfigProperties.SwaggerUrl;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

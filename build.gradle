@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.4.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'idea'
 
     // For test & quality control
     id 'jacoco'
@@ -34,14 +35,21 @@ dependencies {
 
     implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.5.5'
 
+    // For Constructor, Getter and Setter annotations
     compileOnly 'org.projectlombok:lombok'
-
     annotationProcessor 'org.projectlombok:lombok'
     // For auto completion on properties
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // ---- Test Dependencies ----
 
     // Test dependencies
+    testImplementation('org.projectlombok:lombok')
+    testImplementation 'commons-io:commons-io:2.8.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Test annotations
+    testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 dependencyManagement {
@@ -78,8 +86,6 @@ task integrationTest(type: Test) {
     shouldRunAfter test
 }
 
-check.dependsOn integrationTest
-
 // Test and integrationTest should print logging events and use JUnit
 tasks.withType(Test) {
     useJUnitPlatform()
@@ -91,8 +97,11 @@ tasks.withType(Test) {
 
 configurations {
     integrationTestImplementation.extendsFrom testImplementation
+//    integrationTestCompile.extendsFrom testCompile
     integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
 }
+
+check.dependsOn integrationTest
 
 // --- Setup Sonar ---
 sonarqube {

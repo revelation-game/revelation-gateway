@@ -30,16 +30,17 @@ public class RequestLoggerFilter implements GlobalFilter, Ordered {
 
         log.info("Incoming request, ID = {}, Origin: {}, URL: {} - {}", requestID, remoteUrl, exchange.getRequest().getMethodValue(), exchange.getRequest().getURI().toString());
 
-        return chain.filter(exchange)
-                .then(Mono.fromRunnable(() -> {
-                    long endTime = System.currentTimeMillis();
-
-                    log.info("Request finished, ID = {}, Required Time: {}ms", requestID, endTime - startTime);
-                }));
+        return chain.filter(exchange).then(Mono.fromRunnable(() -> logRequiredTime(requestID, startTime)));
     }
 
     @Override
     public int getOrder() {
         return -1;
+    }
+
+    private void logRequiredTime(long requestID, long startTime) {
+        long endTime = System.currentTimeMillis();
+
+        log.info("Request finished, ID = {}, Required Time: {}ms", requestID, endTime - startTime);
     }
 }

@@ -15,7 +15,7 @@ spring:
         - id: game-service
           uri: lb://revelation-game
           predicates:
-            - Path=/game/**
+            - Path=/game/p/**
           filters:
             - StripPrefix=1
 springdoc:
@@ -25,5 +25,6 @@ springdoc:
 revelation:
   custom-swagger:
     host-name: ${HOST_NAME:http://localhost:8080}
+    public-prefix: /p
     url-prefixes:
-      - game
+      - /game

@@ -112,6 +112,7 @@ jobs:
     needs: [ analyze-sonar ]
 
     steps:
+      - uses: actions/checkout@v2
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -121,11 +122,18 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Read version.properties
+        id: package
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./version.properties
+      - name: Echo version.properties
+        run: echo ${{ steps.package.outputs.content }}
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: shauck/revelation_gateway:latest
+          tags: shauck/revelation_gateway:latest,shauck/revelation_gateway:${{ steps.package.outputs.content }}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

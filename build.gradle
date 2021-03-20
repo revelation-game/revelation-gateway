@@ -11,8 +11,12 @@ plugins {
 }
 
 group = 'io.github.revelation-game'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '15'
+// Load version from file
+def buildProperties = new Properties()
+file("version.properties").withInputStream { stream ->
+    buildProperties.load(stream)
+}
 
 configurations {
     compileOnly {

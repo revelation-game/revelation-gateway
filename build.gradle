@@ -10,6 +10,7 @@ plugins {
 
 }
 
+
 group = 'io.github.revelation-game'
 sourceCompatibility = '15'
 // Load version from file

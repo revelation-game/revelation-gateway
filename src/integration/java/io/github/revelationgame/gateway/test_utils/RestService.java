@@ -1,4 +1,4 @@
-package io.github.revelationgame.gateway.integrationtest.test_utils;
+package io.github.revelationgame.gateway.test_utils;
 
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpMethod;

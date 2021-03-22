@@ -1,7 +1,7 @@
-package io.github.revelationgame.gateway.integrationtest.openapi;
+package io.github.revelationgame.gateway.openapi;
 
 
-import io.github.revelationgame.gateway.integrationtest.IntegrationTest;
+import io.github.revelationgame.gateway.IntegrationTest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

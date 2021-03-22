@@ -1,4 +1,4 @@
-package io.github.revelationgame.gateway.integrationtest;
+package io.github.revelationgame.gateway;
 
 import org.junit.jupiter.api.Test;
 

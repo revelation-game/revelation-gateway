@@ -4,12 +4,14 @@ plugins {
     id 'java'
     id 'idea'
 
+    // Handle integratinTests
+    id "com.coditory.integration-test" version "1.1.11"
+
     // For test & quality control
     id 'jacoco'
     id "org.sonarqube" version "3.1.1"
 
 }
-
 
 group = 'io.github.revelation-game'
 sourceCompatibility = '15'
@@ -37,7 +39,6 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-
     implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.5.5'
 
     // For Constructor, Getter and Setter annotations
@@ -63,50 +64,21 @@ dependencyManagement {
     }
 }
 
-// --- Setup Tests ---
+// PLUGIN
 
-// Define jacoco reports for tests
 jacocoTestReport {
+    executionData(fileTree(project.buildDir).include("jacoco/*.exec"))
     reports {
-        xml.enabled true
+        xml.enabled = true
+        html.enabled = true
     }
 }
 
-// Define integration test
-sourceSets {
-    integrationTest {
-        compileClasspath += sourceSets.main.output
-        runtimeClasspath += sourceSets.main.output
-    }
-}
-
-test {}
-
-task integrationTest(type: Test) {
-    description = 'Runs integration tests.'
-    group = 'verification'
-
-    testClassesDirs = sourceSets.integrationTest.output.classesDirs
-    classpath = sourceSets.integrationTest.runtimeClasspath
-    shouldRunAfter test
-}
-
-// Test and integrationTest should print logging events and use JUnit
 tasks.withType(Test) {
     useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed", "standardError" //, "standardOut"
-    }
-    finalizedBy jacocoTestReport // report is always generated after tests run
+    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
 }
 
-configurations {
-    integrationTestImplementation.extendsFrom testImplementation
-//    integrationTestCompile.extendsFrom testCompile
-    integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
-}
-
-check.dependsOn integrationTest
 
 // --- Setup Sonar ---
 sonarqube {

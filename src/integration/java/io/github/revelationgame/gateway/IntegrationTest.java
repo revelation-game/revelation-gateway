@@ -1,7 +1,6 @@
-package io.github.revelationgame.gateway.integrationtest;
+package io.github.revelationgame.gateway;
 
-import io.github.revelationgame.gateway.GatewayApplication;
-import io.github.revelationgame.gateway.integrationtest.test_utils.RestService;
+import io.github.revelationgame.gateway.test_utils.RestService;
 import org.assertj.core.util.Files;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

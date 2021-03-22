@@ -4,11 +4,11 @@ plugins {
     id 'java'
     id 'idea'
 
-    // Handle integratinTests
+    // Handle integrationTest
     id "com.coditory.integration-test" version "1.1.11"
+    id 'jacoco'
 
     // For test & quality control
-    id 'jacoco'
     id "org.sonarqube" version "3.1.1"
 
 }
@@ -47,11 +47,7 @@ dependencies {
     // For auto completion on properties
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
-    // ---- Test Dependencies ----
-
-    // Test dependencies
-    testImplementation('org.projectlombok:lombok')
-    testImplementation 'commons-io:commons-io:2.8.0'
+    // Test Dependencies
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // Test annotations
@@ -64,7 +60,7 @@ dependencyManagement {
     }
 }
 
-// PLUGIN
+// IntegrationTest plugin
 
 jacocoTestReport {
     executionData(fileTree(project.buildDir).include("jacoco/*.exec"))

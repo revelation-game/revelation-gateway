@@ -63,7 +63,7 @@ dependencyManagement {
 // IntegrationTest plugin
 
 jacocoTestReport {
-    executionData(fileTree(project.buildDir).include("jacoco/*.exec"))
+    // executionData(fileTree(project.buildDir).include("jacoco/*.exec"))
     reports {
         xml.enabled = true
         html.enabled = true

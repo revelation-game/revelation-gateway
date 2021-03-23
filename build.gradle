@@ -73,6 +73,11 @@ jacocoTestReport {
 tasks.withType(Test) {
     useJUnitPlatform()
     maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+    
+    testLogging {
+        events "passed", "skipped", "failed", "standardError" //, "standardOut"
+    }
+    finalizedBy jacocoTestReport // report is always generated after tests run
 }
 
 

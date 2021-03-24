@@ -1,7 +1,7 @@
 {
   "urls": [
     {
-      "url": "exampleHostname/game/p/custom-open-api/v3/api-docs?serverUrl=exampleHostname/game",
+      "url": "exampleHostname/game/custom-open-api/v3/api-docs?serverUrl=exampleHostname/game",
       "name": "/game"
     }
   ]

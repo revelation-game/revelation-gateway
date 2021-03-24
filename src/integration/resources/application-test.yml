@@ -5,6 +5,5 @@ spring:
 revelation:
   custom-swagger:
     host-name: exampleHostname
-    public-prefix: /p
     url-prefixes:
       - /game

@@ -22,10 +22,6 @@ public class SwaggerUiConfig {
 
     @Getter
     @Setter
-    private String publicPrefix;
-
-    @Getter
-    @Setter
     private List<String> urlPrefixes;
 
     @GetMapping("/swagger-config.json")
@@ -40,6 +36,6 @@ public class SwaggerUiConfig {
 
     private String getApiUrl(String prefix) {
         String path = hostName + prefix;
-        return path + publicPrefix + "/custom-open-api/v3/api-docs?serverUrl=" + path;
+        return path + "/custom-open-api/v3/api-docs?serverUrl=" + path;
     }
 }

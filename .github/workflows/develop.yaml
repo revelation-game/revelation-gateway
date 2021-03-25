@@ -70,7 +70,7 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
 
       - name: Build with gradle
-        run: ./gradlew clean build # Try to fix report-x test
+        run: ./gradlew clean build
 
   analyze-sonar:
     name: Analyze with sonar

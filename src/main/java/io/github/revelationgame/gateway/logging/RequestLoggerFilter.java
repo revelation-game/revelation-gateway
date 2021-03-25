@@ -25,12 +25,12 @@ public class RequestLoggerFilter implements GlobalFilter, Ordered {
                 .map(InetAddress::getHostAddress)
                 .orElse("Failed to find removeAddress");
 
-        long requestID = RequestLoggerFilter.getRequestID();
+        long currentID = RequestLoggerFilter.getRequestID();
         long startTime = System.currentTimeMillis();
 
-        log.info("Incoming request, ID = {}, Origin: {}, URL: {} - {}", requestID, remoteUrl, exchange.getRequest().getMethodValue(), exchange.getRequest().getURI().toString());
+        log.info("Incoming request, ID = {}, Origin: {}, URL: {} - {}", currentID, remoteUrl, exchange.getRequest().getMethodValue(), exchange.getRequest().getURI().toString());
 
-        return chain.filter(exchange).then(Mono.fromRunnable(() -> logRequiredTime(requestID, startTime)));
+        return chain.filter(exchange).then(Mono.fromRunnable(() -> logRequiredTime(currentID, startTime)));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class RequestLoggerFilter implements GlobalFilter, Ordered {
         log.info("Request finished, ID = {}, Required Time: {}ms", requestID, endTime - startTime);
     }
 
-    private synchronized static long getRequestID() {
+    private static synchronized long getRequestID() {
         return requestID++;
     }
 }

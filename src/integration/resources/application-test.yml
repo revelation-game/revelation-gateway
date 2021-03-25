@@ -15,3 +15,6 @@ revelation:
   security:
     username: admin
     password: pw
+eureka:
+  client:
+    enabled: false

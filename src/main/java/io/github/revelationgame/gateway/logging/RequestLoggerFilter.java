@@ -16,7 +16,7 @@ import java.util.Optional;
 @Slf4j
 public class RequestLoggerFilter implements GlobalFilter, Ordered {
 
-    private static long REQUEST_ID = 0;
+    private static long requestID = 0;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -25,7 +25,7 @@ public class RequestLoggerFilter implements GlobalFilter, Ordered {
                 .map(InetAddress::getHostAddress)
                 .orElse("Failed to find removeAddress");
 
-        long requestID = REQUEST_ID++;
+        long requestID = RequestLoggerFilter.getRequestID();
         long startTime = System.currentTimeMillis();
 
         log.info("Incoming request, ID = {}, Origin: {}, URL: {} - {}", requestID, remoteUrl, exchange.getRequest().getMethodValue(), exchange.getRequest().getURI().toString());
@@ -42,5 +42,9 @@ public class RequestLoggerFilter implements GlobalFilter, Ordered {
         long endTime = System.currentTimeMillis();
 
         log.info("Request finished, ID = {}, Required Time: {}ms", requestID, endTime - startTime);
+    }
+
+    private synchronized static long getRequestID() {
+        return requestID++;
     }
 }

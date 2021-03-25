@@ -14,6 +14,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @ConfigurationProperties(prefix = "revelation.security")
 public class SecurityConfig {
 
+    public static final String ROLE_ADMIN = "ADMIN";
     @Getter
     @Setter
     private String username;
@@ -25,7 +26,7 @@ public class SecurityConfig {
     @Bean
     MapReactiveUserDetailsService authentication() {
         return new MapReactiveUserDetailsService(
-                User.withDefaultPasswordEncoder().username(username).password(password).roles("ADMIN").build()
+                User.withDefaultPasswordEncoder().username(username).password(password).roles(ROLE_ADMIN).build()
         );
     }
 
@@ -33,10 +34,10 @@ public class SecurityConfig {
     SecurityWebFilterChain authorization(ServerHttpSecurity security) {
         return security.authorizeExchange()
                 // Stupid workaround to make all security paths required admin privileges
-                .pathMatchers("/sec/**").hasRole("ADMIN")
-                .pathMatchers("/*/sec/**").hasRole("ADMIN")
-                .pathMatchers("/*/*/sec/**").hasRole("ADMIN")
-                .pathMatchers("/*/*/*/sec/**").hasRole("ADMIN")
+                .pathMatchers("/sec/**").hasRole(ROLE_ADMIN)
+                .pathMatchers("/*/sec/**").hasRole(ROLE_ADMIN)
+                .pathMatchers("/*/*/sec/**").hasRole(ROLE_ADMIN)
+                .pathMatchers("/*/*/*/sec/**").hasRole(ROLE_ADMIN)
                 .pathMatchers("/**").permitAll()
                 .and()
                 .httpBasic()

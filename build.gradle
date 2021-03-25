@@ -51,6 +51,7 @@ dependencies {
     // Test Dependencies
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.springframework.cloud:spring-cloud-contract-wiremock'
 
     // Test annotations
     testAnnotationProcessor 'org.projectlombok:lombok'

@@ -1,9 +1,17 @@
 spring:
   cloud:
     discovery:
-      enabled: false
+      enabled: true
+      client:
+        simple:
+          instances:
+            revelation-game[0]:
+              uri: http://localhost:${wiremock.server.port}
 revelation:
   custom-swagger:
     host-name: exampleHostname
     url-prefixes:
       - /game
+  security:
+    username: admin
+    password: pw

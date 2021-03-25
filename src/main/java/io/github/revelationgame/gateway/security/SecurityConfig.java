@@ -32,11 +32,16 @@ public class SecurityConfig {
     @Bean
     SecurityWebFilterChain authorization(ServerHttpSecurity security) {
         return security.authorizeExchange()
+                // Stupid workaround to make all security paths required admin privileges
+                .pathMatchers("/sec/**").hasRole("ADMIN")
                 .pathMatchers("/*/sec/**").hasRole("ADMIN")
+                .pathMatchers("/*/*/sec/**").hasRole("ADMIN")
+                .pathMatchers("/*/*/*/sec/**").hasRole("ADMIN")
                 .pathMatchers("/**").permitAll()
                 .and()
                 .httpBasic()
                 .and()
                 .build();
     }
+
 }

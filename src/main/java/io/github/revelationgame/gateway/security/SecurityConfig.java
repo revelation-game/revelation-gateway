@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .and()
                 .httpBasic()
                 .and()
+                .csrf().disable()
                 .build();
     }
 

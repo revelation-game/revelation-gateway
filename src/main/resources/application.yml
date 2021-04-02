@@ -18,6 +18,12 @@ spring:
             - Path=/game/**
           filters:
             - StripPrefix=1
+        - id: realtime-service
+          uri: lb://revelation-realtime
+          predicates:
+            - Path=/realtime/**
+          filters:
+            - StripPrefix=1
 springdoc:
   swagger-ui:
     config-url: /swagger-config.json
@@ -27,6 +33,7 @@ revelation:
     host-name: ${HOST_NAME:http://localhost:8080}
     url-prefixes:
       - /game
+      - /realtime
   security:
     username: admin
     password: ${ADMIN_PASSWORD:admin}
